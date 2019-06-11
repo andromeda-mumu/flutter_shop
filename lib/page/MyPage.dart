@@ -36,9 +36,10 @@ class _PageWidgetState extends State<PageWidget> {
     );
   }
   _pushPage(){
-//    Navigator.of(widget.parentContext).pushNamed('/demo1');
-    Navigator.of(widget.parentContext).push(new MaterialPageRoute(builder: (context){
-      return new Demo1();
-    },));
+    //这个不行，因为routes定义在mypage里，而parentContext是MainPage的
+    Navigator.of(widget.parentContext).pushNamed('/demo1');
+//    Navigator.of(widget.parentContext).push(new MaterialPageRoute(builder: (context){
+//      return new Demo1();
+//    },));
   }
 }
