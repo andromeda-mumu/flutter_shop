@@ -45,9 +45,27 @@ class ShopState extends State<ShopPage>{
 //         _getItem2(),
 //         _getItem2()
 //       ],
-     children: _getItem(),
+     children: data!=null?_getItem():_loading(),
      ),
     );
+  }
+  List<Widget> _loading(){
+    return <Widget>[
+      new Container(
+        height: 300,
+        child: new Center(
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new CircularProgressIndicator(
+                strokeWidth: 1.0,
+              ),
+              new Text('正在加载')
+            ],
+          ),
+        ),
+      )
+    ];
   }
 
   List<Widget> _getItem(){
