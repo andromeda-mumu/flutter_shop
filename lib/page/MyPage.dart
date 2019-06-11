@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/widget/Demo1.dart';
 class MyPage extends StatelessWidget {
+  var parentContext;
+  MyPage(this.parentContext);
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -12,7 +14,7 @@ class MyPage extends StatelessWidget {
 //      home: new Scaffold(
 //        body: new Center(child:new Text("我的")),
 //      ),
-       home:  new PageWidget(),
+       home:  new PageWidget(parentContext),
         routes: <String,WidgetBuilder>{
           "/demo1":(BuildContext context)=>new Demo1(),
         }
@@ -20,6 +22,8 @@ class MyPage extends StatelessWidget {
   }
 }
 class PageWidget extends StatefulWidget {
+  var parentContext;
+  PageWidget(this.parentContext);
   @override
   _PageWidgetState createState() => new _PageWidgetState();
 }
@@ -32,9 +36,9 @@ class _PageWidgetState extends State<PageWidget> {
     );
   }
   _pushPage(){
-    Navigator.of(context).pushNamed('/demo1');
-//    Navigator.of(context).push(new MaterialPageRoute(builder: (context){
-//      return new Demo1();
-//    },));
+//    Navigator.of(widget.parentContext).pushNamed('/demo1');
+    Navigator.of(widget.parentContext).push(new MaterialPageRoute(builder: (context){
+      return new Demo1();
+    },));
   }
 }

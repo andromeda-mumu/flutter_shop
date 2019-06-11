@@ -87,7 +87,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
       new HomePage(),
       new ShopPage(),
       new MsgPage(),
-      new MyPage()
+      new MyPage(context)
   ];
   }
 
