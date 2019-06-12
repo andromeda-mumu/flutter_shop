@@ -18,10 +18,13 @@ class ShopState extends State<ShopPage>{
   void initState() {
     // TODO: implement initState
     super.initState();
-    _pullNet();
-
+//    _pullNet();
+     _httpClient();
   }
 
+  /**
+   * http的网络请求方式
+   */
   void _pullNet()async{
     await http.get("http://www.wanandroid.com/project/list/1/json?cid=1")
         .then((http.Response response){
@@ -36,6 +39,26 @@ class ShopState extends State<ShopPage>{
     });
   }
 
+  /**
+   * httpclient的网络请求方式
+   */
+  void _httpClient()async{
+    var responseBody;
+    var httpClient = new HttpClient();
+    var request = await httpClient.getUrl(Uri.parse('http://www.wanandroid.com/project/list/1/json?cid=1'));
+    var response = await request.close();
+    if(response.statusCode==200){
+      responseBody = await response.transform(utf8.decoder).join();
+      //解析json
+      var converDataToJson = jsonDecode(responseBody)['data']['datas'];
+      //更新数据
+      setState(() {
+        data = converDataToJson;
+      });
+    }else{
+      print("error");
+    }
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
