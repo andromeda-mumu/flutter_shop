@@ -57,9 +57,7 @@ class ShopState extends State<ShopPage>{
           child: new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              new CircularProgressIndicator(
-                strokeWidth: 1.0,
-              ),
+              new CircularProgressIndicator(strokeWidth: 1.0,),
               new Text('正在加载')
             ],
           ),
@@ -75,7 +73,7 @@ class ShopState extends State<ShopPage>{
               padding: const EdgeInsets.all(10.0),
               child: _getRowWidget(item),
             ),
-        elevation: 3.0,
+          elevation: 3.0,
           margin: const EdgeInsets.all(10),
       );
     }).toList();
@@ -96,13 +94,14 @@ class ShopState extends State<ShopPage>{
             ],)
           ],)
       ),
-      new ClipRect(child: new FadeInImage.assetNetwork(
-        placeholder: 'images/ic_shop_normal.png',
-        image: '${item['envelopePic']}',
-        width: 50,
-        height: 50,
-        fit: BoxFit.fitWidth,
-      ),),
+      new ClipRect(
+          child: new FadeInImage.assetNetwork(
+                placeholder: 'images/ic_shop_normal.png',
+                image: '${item['envelopePic']}',
+                width: 50,
+                height: 50,
+                fit: BoxFit.fitWidth,
+          ),),
     ],);
   }
 
